@@ -13,6 +13,8 @@ object AsyncController extends Controller {
 
   def index = Action.async {
     val newUser = User("john","password")
+    
+    User.createTable
 
     User.insert(newUser).flatMap( insertResult =>
       User.getSamples().map( users =>

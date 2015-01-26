@@ -19,6 +19,8 @@ object User {
   lazy val db = DB(dbname)
   val table = db.table[User]("users")
 
+  def createTable = User.table.create.run # async
+
   def insert(newUser: User) = table.insert(newUser).run
 
   def getSamples() = table.sample(10).as[Seq[User]]
