@@ -7,9 +7,9 @@ lazy val root = (project in file(".")).enablePlugins(PlayScala)
 scalaVersion := "2.11.4"
 
 resolvers ++= Seq(
-  "RethinkScala Repository" at "http://kclay.github.io/releases"
+  "RethinkScala Repository" at "http://dl.bintray.com/jdauphant/maven/"
 )
 
 libraryDependencies ++= Seq(
-  "com.rethinkscala"  %% "core"                 % "0.4.5"
+  "com.rethinkscala"  %% "core"                 % "0.4.7-SNAPSHOT"
 )

@@ -2,7 +2,7 @@ package models
 
 import com.rethinkscala.Document
 import com.rethinkscala.ast.DB
-import com.rethinkscala.net.Version3
+import com.rethinkscala.net.{Version2, Version3}
 import play.api.Play
 import play.api.Play.current
 
@@ -14,12 +14,12 @@ object User {
   val host = Play.configuration.getString("rethinkdb.host").get
   val port = Play.configuration.getInt("rethinkdb.port").get
   val dbname = Play.configuration.getString("rethinkdb.dbname").get
-  lazy val version = new Version3(host,port)
+  lazy val version = new Version2(host,port)
   lazy implicit val connection = Async(version)
   lazy val db = DB(dbname)
   val table = db.table[User]("users")
 
-  def createTable = User.table.create.run # async
+  def createTable = User.table.create.run // async
 
   def insert(newUser: User) = table.insert(newUser).run
 
